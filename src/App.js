@@ -17,37 +17,67 @@ import { Switch } from 'react-router-dom';
 // import { Provider } from "react-redux";
 
 
+const App = () =>{
+  const [categories, setCategories] = useState([]);
 
-function App() {
-  // const isAuthenticated = localStorage.getItem('token') !== null;
+  useEffect(() => {
+    getData()
+  }, []);
+
+  const getData = async () => {
+    const result = await fetch('/api/categories', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const fetchedCategories = await result.json();
+    setCategories(fetchedCategories);
+  }
 
   return (
-    <h1>hello world people</h1>
-    // <Provider store={store}>
-    //      <Router>
-    //         <Layout>
-    //             <Switch>
-    //                 <Route exact path="/" component={HomePage} />
-    //                 <Route exact path="/login" component={LoginPage} />
-    //                 <PrivateRoute path="/checkout" component={CheckOut} />
-    //                 <PrivateRoute path="/preorder" component={PreOrder} />
-
-    //             </Switch>
-    //         </Layout>
-    // </Router>
-    // </Provider>
-   
+    <div>
+      <h1>Categories</h1>
+      <ul>
+        {categories.map((category) => (
+          <li key={category.id}>{category.name}</li>
+        ))}
+      </ul>
+    </div>
   );
-}
+};
 export default App;
+
+// function App() {
+//   // const isAuthenticated = localStorage.getItem('token') !== null;
+
+//   return (
+//     <h1>hello world people </h1>
+//     // <Provider store={store}>
+//     //      <Router>
+//     //         <Layout>
+//     //             <Switch>
+//     //                 <Route exact path="/" component={HomePage} />
+//     //                 <Route exact path="/login" component={LoginPage} />
+//     //                 <PrivateRoute path="/checkout" component={CheckOut} />
+//     //                 <PrivateRoute path="/preorder" component={PreOrder} />
+
+//     //             </Switch>
+//     //         </Layout>
+//     // </Router>
+//     // </Provider>
+   
+//   );
+// }
+// export default App;
 
 
 
 
 // function App() {
-//   return(
-//     <SignInForm/>
-//   )
+  // return(
+  //   <SignInForm/>
+  // )
   // const [todos, setTodo] = useState([]);
 
   // useEffect(() => {
@@ -60,33 +90,34 @@ export default App;
   //       })
   // }, []);
 
-  // const handleAddTodo = (value) => {
-  //   axios
-  //     .post("/api/api/todos", { text: value })
-  //     .then(() => {
-  //       setTodo([...todos,{text: value}])
-  //     })
-  //     .catch((e) => console.log("Error : ", e));
-  // };
+//   const handleAddTodo = async (value) => {
+//     //do fetch to get data
+//     await fetch('/api/categories', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//   };
 
-  // return (
-  //   <div className="App container">
-  //   <div className="container-fluid">
-  //     <div className="row">
-  //       <div className="col-xs-12 col-sm-8 col-md-8 offset-md-2">
-  //         <h1>Todos</h1>
-  //         <div className="todo-app">
-  //         <AddTodo handleAddTodo={handleAddTodo} />
-  //         <TodoList todos={todos} />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>
-  // );
-  // return(
-  //   <CheckoutForm/>
-  // )
+//   return (
+//     <div className="App container">
+//     <div className="container-fluid">
+//       <div className="row">
+//         <div className="col-xs-12 col-sm-8 col-md-8 offset-md-2">
+//           <h1>Todos</h1>
+//           <div className="todo-app">
+//           <AddTodo handleAddTodo={handleAddTodo} />
+//           <TodoList todos={todos} />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+//   );
+//   // return(
+//   //   <CheckoutForm/>
+//   // )
 // }
 
 // export default App;
