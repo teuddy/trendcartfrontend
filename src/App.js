@@ -25,7 +25,7 @@ const App = () =>{
   }, []);
 
   const getData = async () => {
-    const result = await fetch('https://backend.trendcarts.net/v1', {
+    const result = await fetch('https://backend.trendcarts.net/v1/categories', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
