@@ -1,0 +1,19 @@
+/* src/components/ShoppingCartIcon.css */
+.shopping-cart-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+/* src/components/ShoppingCartIcon.css */
+.cart-items-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+  }
