@@ -1,16 +1,11 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
-  const isProduction = 'production' === 'production';
-
   app.use(
     "/api",
     createProxyMiddleware({
-      target: isProduction
-        ? 'https://backend.trendcarts.net/v1'
-        : 'http://localhost:8080/v1',
+      target: 'https://backend.trendcarts.net/v1',
       pathRewrite: { "^/api": "" },
-      changeOrigin: isProduction,
     })
   );
 };
